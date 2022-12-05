@@ -1,0 +1,6 @@
+D: C:\Users\Dario\eclipse-workspace\workspace 2022\Katas\bin  //  Created: 27/11/2022
+D: C:\Users\Dario\eclipse-workspace\workspace 2022\Katas\bin\katas_2022  //  Created: 27/11/2022
+  F: Kata_2022_11_25.class  //  Created: 27/11/2022
+D: C:\Users\Dario\eclipse-workspace\workspace 2022\Katas\src  //  Created: 26/11/2022
+D: C:\Users\Dario\eclipse-workspace\workspace 2022\Katas\src\katas_2022  //  Created: 26/11/2022
+  F: Kata_2022_11_25.java  //  Created: 26/11/2022

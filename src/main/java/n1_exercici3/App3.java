@@ -16,7 +16,8 @@ public class App3 {
 	private static List<String> datosArchivo = new ArrayList<>();
 
 	public static void main(String[] args) {
-		String path = "C:\\Users\\Dario\\eclipse-workspace\\workspace 2022\\Katas";
+		//String path = "C:\\Users\\Dario\\eclipse-workspace\\workspace 2022\\Katas";
+		String path = "src";
 		String slash = "\\";
 		App3 app3 = new App3();
 		app3.listContent(path, slash);
@@ -35,12 +36,12 @@ public class App3 {
 			if (!files[i].getName().startsWith(".")) {
 				if (!files[i].isDirectory()) {
 					datosArchivo.add(
-							"  F: " + files[i].getName() + "  //  Created: " + sdf.format(files[i].lastModified()));
+							"  F: "+ files[i].getAbsolutePath() + "(Created: " + sdf.format(files[i].lastModified()) + ")");
 				}
 				if (files[i].isDirectory()) {
 					path = files[i].getPath();
 
-					datosArchivo.add("D: " + path + "  //  Created: " + sdf.format(files[i].lastModified()));
+					datosArchivo.add("D: " + files[i].getAbsolutePath() + "(Created: " + sdf.format(files[i].lastModified()) + ")");
 					listContent(path, slash);
 				}
 			}
@@ -49,7 +50,8 @@ public class App3 {
 	}
 
 	public void guardarArchivo(List<String> datosArchivo) {
-		String ruta = "C:\\Users\\Dario\\eclipse-workspace\\workspace 2022\\Sprint1_Tasca5_Java_Utils\\src\\main\\java\\n1_exercici3\\";
+		//String ruta = "C:\\Users\\Dario\\eclipse-workspace\\workspace 2022\\Sprint1_Tasca5_Java_Utils\\src\\main\\java\\n1_exercici3\\";
+		String ruta = "src\\\\main\\\\java\\\\n1_exercici3\\";
 		File file = new File(ruta + "exercici3.txt");
 		try {
 			FileWriter fileWriter = new FileWriter(file);
