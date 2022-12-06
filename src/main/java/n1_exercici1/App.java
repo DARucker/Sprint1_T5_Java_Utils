@@ -6,9 +6,11 @@ import java.util.Arrays;
 public class App {
 
 	File file;
-
+	static String path;
+	
 	public static void main(String[] args) {
-		String path = "C:\\Users\\Dario\\eclipse-workspace\\workspace 2022";
+		
+		path = args[0];
 		App app = new App();
 		app.listContent(path);
 	}

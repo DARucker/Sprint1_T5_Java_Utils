@@ -1,26 +1,39 @@
-package n1_exercici3;
+package n2_exercici1;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
-public class App3 {
+public class App_2_1 {
 
 	private File file;
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private static List<String> datosArchivo = new ArrayList<>();
-
+    static Properties properties= new Properties();
+	
 	public static void main(String[] args) {
 
-		String path = args[0];		
-		App3 app3 = new App3();
-		app3.listContent(path);
-		app3.guardarArchivo(datosArchivo);
+	    try {
+	        properties.load(new FileInputStream(new File("C:\\Users\\Dario\\eclipse-workspace\\workspace 2022\\Sprint1_Tasca5_Java_Utils\\src\\main\\java\\n2_exercici1\\configuration.properties")));
+	        
+	        System.out.println(properties.get("path"));
+	        System.out.println(properties.get("file"));
+	        
+	    } catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+	    
+		String path = (String) properties.get("path");		
+		App_2_1 app = new App_2_1();
+		app.listContent(path);
+		app.guardarArchivo(datosArchivo);
 	}
 
 	private void listContent(String path) {
@@ -50,10 +63,12 @@ public class App3 {
 
 	public void guardarArchivo(List<String> datosArchivo) {
  
-		String ruta = "C:\\\\Users\\\\Dario\\\\eclipse-workspace\\\\workspace 2022\\\\Sprint1_Tasca5_Java_Utils\\src\\main\\java\\n1_exercici3\\";
-		File file = new File(ruta + "exercici3.txt");
+		String ruta = (String) properties.get("pathfile");
+		String archivo = (String) properties.get("file");		
+
+		File f = new File(ruta + archivo);
 		try {
-			FileWriter fileWriter = new FileWriter(file);
+			FileWriter fileWriter = new FileWriter(f);
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 			for (String s : datosArchivo) {
 				bufferedWriter.write(s + "\n");

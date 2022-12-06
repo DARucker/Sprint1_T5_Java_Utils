@@ -10,10 +10,11 @@ public class App4 {
 	private BufferedReader bufferedReader;
 	private String line;
 	private String file = "file.txt";
-	private String path = "src\\main\\java\\n1_exercici4\\";
-
+	private static String path;
+	
 	public static void main(String[] args) {
 
+		path = args[0];
 		App4 app4 = new App4();
 		app4.readFile();
 	}

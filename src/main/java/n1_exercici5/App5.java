@@ -20,8 +20,10 @@ public class App5 {
 	FileInputStream fis;
 	ObjectInputStream ois;
 	List<Persona> arrayPersonas = new ArrayList<>();
+	private static String file;
 	
 	public static void main(String[] args) {
+		file = args[0];
 		App5 app5 = new App5();
 		app5.serializeObject();
 		app5.deserializeObject();
@@ -30,12 +32,12 @@ public class App5 {
 	public void serializeObject() {
 		
 		try {
-			fos = new FileOutputStream("src\\main\\java\\n1_exercici5\\personas.ser");
+//			fos = new FileOutputStream("src\\main\\java\\n1_exercici5\\personas.ser");
+			fos = new FileOutputStream(file);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(p1);
 			oos.writeObject(p2);
 			oos.writeObject(p3);
-			//oos.flush();
 			oos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -45,7 +47,8 @@ public class App5 {
 	public void deserializeObject() {
 		
 			try {
-				fis = new FileInputStream("src\\main\\java\\n1_exercici5\\personas.ser");
+//				fis = new FileInputStream("src\\main\\java\\n1_exercici5\\personas.ser");
+				fis = new FileInputStream(file);
 				ois = new ObjectInputStream(fis);
 
 				while(ois != null) {

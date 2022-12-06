@@ -10,13 +10,12 @@ public class App2 {
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	public static void main(String[] args) {
-		String path = "C:\\Users\\Dario\\eclipse-workspace\\workspace 2022\\ProgramacionFuncional";
-		String slash = "\\";
+		String path = args[0];
 		App2 app2 = new App2();
-		app2.listContent(path, slash);
+		app2.listContent(path);
 	}
 
-	private void listContent(String path, String slash) {
+	private void listContent(String path) {//, String slash) {
 
 		file = new File(path);
 		File[] files = file.listFiles();
@@ -29,12 +28,12 @@ public class App2 {
 			if (!files[i].getName().startsWith(".")) {
 				if (!files[i].isDirectory()) {
 					System.out.println(
-							"  F: " + files[i].getName() + "  //  Created: " + sdf.format(files[i].lastModified()));
+							"  F: " + path + files[i].getName() + "  //  Created: " + sdf.format(files[i].lastModified()));
 				}
 				if (files[i].isDirectory()) {
 					path = files[i].getPath();
 					System.out.println("D: " + path + "  //  Created: " + sdf.format(files[i].lastModified()));
-					listContent(path, slash);
+					listContent(path);
 				}
 			}
 		}
