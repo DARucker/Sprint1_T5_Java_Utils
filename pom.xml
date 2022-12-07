@@ -4,4 +4,15 @@
   <artifactId>Sprint1_Tasca5_Java_Utils</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Sprint1_Tasca5_Java_Utils</name>
+
+<dependencies>
+ 
+  <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.15</version>
+</dependency>
+  
+  </dependencies>
 </project>
