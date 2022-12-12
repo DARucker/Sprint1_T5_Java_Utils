@@ -1,5 +1,12 @@
 package n3_exercici1;
 
+/*	
+ 
+	https://github.com/Anass-ABEA/Java-Encryption
+	
+*/
+
+
 import static org.apache.commons.codec.binary.Base64.decodeBase64;
 
 import java.io.File;
@@ -15,7 +22,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class App_3_1 {
+public class App_3_1_COPIA {
 
 	private final static String ALGORITHM = "AES"; // Algoritmo (AES, DES, RSA)
 	private final static String CIPHER = "AES/CBC/PKCS5Padding"; 	// Tipo de cifrado, por bloques, padding etc.
@@ -23,20 +30,35 @@ public class App_3_1 {
 	private String iv; 
 	private String encriptedText;
 	Properties properties= new Properties();
+	public PrivateKey privateKey;
+	static PublicKey publicKey;
 	
 	public static void main(String[] args) {
 
-		App_3_1 app_3_1 = new App_3_1();
+		App_3_1_COPIA app_3_1 = new App_3_1_COPIA();
 		app_3_1.methods();		
 	}
 
+	public App_3_1_COPIA(){
+		try {
+		KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+		generator.initialize(1024);
+		KeyPair pair = generator.generateKeyPair();
+		privateKey = pair.getPrivate();
+		publicKey = pair.getPublic();
+		}catch(Exception ignored) {}
+	}
+	
+	
 	public void methods() {
 		ReaderAndWriter raw = new ReaderAndWriter();
+		//System.out.println(privateKey);
+		//System.out.println(publicKey);
 		
 		try {
 	        properties.load(new FileInputStream(new File("src\\main\\java\\n3_exercici1\\configuration.properties")));
 	        
-	        key = (String) properties.get("key");
+	        //key = (String) properties.get("key");
 	        iv = (String) properties.get("iv");
 	        
 			String fileRead = raw.readFile("exercici3.txt"); // leemos archivo original
@@ -64,9 +86,9 @@ public class App_3_1 {
 
 	public static String encrypt(String llave, String iv, String texto) throws Exception {
 		Cipher cipher = Cipher.getInstance(CIPHER);
-		SecretKeySpec secretKeySpec = new SecretKeySpec(llave.getBytes(), ALGORITHM);
+		//SecretKeySpec secretKeySpec = new SecretKeySpec(llave.getBytes(), ALGORITHM);
 		IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
-		cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
+		cipher.init(Cipher.ENCRYPT_MODE, publicKey, ivParameterSpec);
 		byte[] encrypted = cipher.doFinal(texto.getBytes());
 		String encriptedText1 = Base64.getEncoder().encodeToString(encrypted);
 		return encriptedText1;

@@ -1,3 +1,5 @@
+INSTRUCCIONES PARA EJECUTAR LOS EJERCICIOS DESDE LA LÍNEA DE COMANDOS.
+
 Primero se setea el classpath hasta la carpeta donde están los archivos compilados:
 
 set CLASSPATH=C:\Users\Dario\eclipse-workspace\workspace 2022\Sprint1_Tasca5_Java_Utils\target\classes\
